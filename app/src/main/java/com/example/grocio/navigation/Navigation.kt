@@ -6,20 +6,27 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.grocio.screens.Dashboard
+import com.example.grocio.screens.LoginScreen
 
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
-//    NavHost(navController = navController, startDestination = Screen.Dashboard.route) {
-//        composable(route = Screen.Dashboard.route) {
-//            MovieListScreen(navController, getHardcodedMovies(), onLanguageChange = {})
-//        }
-//        composable(
-//            route = Screen.DetailScreen.route,
-//            arguments = listOf(navArgument("movieId") { type = NavType.IntType })
-//        ) { backStackEntry ->
-//            val movieId = backStackEntry.arguments?.getInt("movieId") ?: -1
-//            MovieDetailScreen(movieId)
-//        }
-//    }
+
+    NavHost(navController = navController, startDestination = Screen.Login.route) {
+        composable(route = Screen.Login.route) {
+            LoginScreen(navController = navController)
+        }
+        composable(
+            route = Screen.Main.route + "?text={text}",
+            arguments = listOf(
+                navArgument("text") {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )
+        ) {
+            Dashboard()
+        }
+    }
 }
