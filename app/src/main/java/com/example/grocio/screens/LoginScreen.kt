@@ -62,6 +62,7 @@ fun LoginScreen(navController: NavController?) {
                 .padding(start = 15.dp, end = 15.dp),
             value = name,
             onValueChange = { name = it },
+            singleLine = true,
             label = { Text("Name") }
         )
 
@@ -70,6 +71,7 @@ fun LoginScreen(navController: NavController?) {
                 .fillMaxWidth()
                 .padding(start = 15.dp, end = 15.dp),
             value = password,
+            singleLine = true,
             onValueChange = { password = it },
             label = { Text("Password") },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),

@@ -10,7 +10,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.grocio.HomeScreen
 import com.example.grocio.NotificationScreen
-import com.example.grocio.ProfileScreen
 import com.example.grocio.SearchScreen
 import com.example.grocio.navigation.BottomNavItem
 
