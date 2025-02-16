@@ -78,3 +78,9 @@ fun NotificationScreen() {
         Text(text = "Notification Screen", fontSize = 24.sp)
     }
 }
+@Composable
+fun NavigationScreen() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text(text = "Notification Screen", fontSize = 24.sp)
+    }
+}

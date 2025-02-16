@@ -13,7 +13,9 @@ import com.example.grocio.navigation.Screen
 import com.example.grocio.screens.LoginScreen
 import com.example.grocio.screens.MainScreen
 import com.example.grocio.ui.theme.GrocioTheme
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

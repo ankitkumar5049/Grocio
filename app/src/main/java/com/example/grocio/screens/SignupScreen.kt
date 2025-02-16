@@ -1,5 +1,7 @@
 package com.example.grocio.screens
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,21 +27,19 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.grocio.ui.theme.GrocioTheme
+import com.example.grocio.navigation.Screen
 import com.example.grocio.viewmodel.SignUpViewModel
 
 @Composable
-fun LoginScreen(navController: NavController?, viewModel: SignUpViewModel = hiltViewModel()) {
+fun SignupScreen(viewModel: SignUpViewModel, navController: NavController?) {
 
-
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var loginText by remember { mutableStateOf("Login Screen") }
+    var phone by remember { mutableStateOf("") }
+    var loginText by remember { mutableStateOf("SignUp Screen") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -61,10 +61,30 @@ fun LoginScreen(navController: NavController?, viewModel: SignUpViewModel = hilt
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 15.dp, end = 15.dp),
+            value = name,
+            onValueChange = { name = it },
+            singleLine = true,
+            label = { Text("Name") }
+        )
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 15.dp, end = 15.dp),
             value = email,
             onValueChange = { email = it },
             singleLine = true,
-            label = { Text("Name") }
+            label = { Text("Email") }
+        )
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 15.dp, end = 15.dp),
+            value = phone,
+            onValueChange = { phone = it },
+            singleLine = true,
+            label = { Text("Phone") }
         )
 
         OutlinedTextField(
@@ -84,10 +104,10 @@ fun LoginScreen(navController: NavController?, viewModel: SignUpViewModel = hilt
         Button(modifier = Modifier
             .fillMaxWidth()
             .padding(15.dp)
-            ,onClick = { viewModel.login(email = email, password=password) },
+            ,onClick = { viewModel.signUp(name, email, password, phone) },
             colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray))
         {
-            Text(text = "Login",
+            Text(text = "SignUp",
                 color = Color.Black)
         }
 
@@ -95,18 +115,17 @@ fun LoginScreen(navController: NavController?, viewModel: SignUpViewModel = hilt
         Text(modifier = Modifier
             .align(Alignment.End)
             .padding(end = 15.dp),
-            text = "SignUp here!",
+            text = "Already have an account! Login here",
             color = Color.Blue)
 
     }
 }
 
 
-
-@Preview(showBackground = true)
-@Composable
-fun LoginPreview() {
-    GrocioTheme {
-        LoginScreen(navController = null)
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignupScreen() {
+//    GrocioTheme {
+//        SignupScreen(viewModel = SignUpViewModel, navController = null)
+//    }
+//}
